@@ -103,13 +103,16 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Disclaimer box */}
-                <div className="bg-white border border-surface-border rounded-sm p-5">
+                {/* Response promise */}
+                <div className="bg-brand-gold/5 border border-brand-gold/20 rounded-sm p-5">
+                  <p className="text-sm font-medium text-text-primary mb-1">
+                    ⏱ Response within one business day
+                  </p>
                   <p className="text-xs text-text-muted leading-relaxed">
-                    <strong className="text-text-secondary">Please note:</strong> Contacting us
-                    does not create an attorney-client relationship. Please do not include
-                    confidential information in your inquiry until an engagement agreement
-                    is in place.
+                    For urgent matters, call us directly at{" "}
+                    <a href="tel:+12125550100" className="text-brand-gold font-medium">
+                      {FIRM.phone}
+                    </a>.
                   </p>
                 </div>
               </div>
@@ -118,12 +121,68 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map placeholder */}
-      <section className="bg-surface-mid h-64 flex items-center justify-center" aria-label="Office location map">
-        <div className="text-center text-text-muted">
-          <MapPin className="h-8 w-8 mx-auto mb-2 text-brand-gold" aria-hidden="true" />
-          <p className="text-sm">Map integration: embed Google Maps API here</p>
-          <p className="text-xs mt-1">123 Park Avenue, Suite 1400, New York, NY 10017</p>
+      {/* Office Locations Strip */}
+      <section className="bg-brand-navy py-14" aria-labelledby="locations-strip-heading">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold tracking-widest uppercase text-brand-gold mb-8 text-center">
+            Our Offices
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {[
+              {
+                city: "New York",
+                tag: "Main Office",
+                address: "123 Park Avenue, Suite 1400",
+                state: "New York, NY 10017",
+                phone: "+1 (212) 555-0100",
+                mapsUrl: "https://maps.google.com/?q=123+Park+Avenue+New+York+NY+10017",
+              },
+              {
+                city: "Los Angeles",
+                tag: "",
+                address: "456 Wilshire Blvd, Suite 800",
+                state: "Los Angeles, CA 90036",
+                phone: "+1 (310) 555-0200",
+                mapsUrl: "https://maps.google.com/?q=456+Wilshire+Blvd+Los+Angeles+CA+90036",
+              },
+            ].map((office) => (
+              <div key={office.city} className="flex gap-5 items-start">
+                <div className="w-10 h-10 rounded-sm bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="font-serif text-lg font-semibold text-white">{office.city}</p>
+                    {office.tag && (
+                      <span className="text-xs text-brand-gold/60 border border-brand-gold/20 px-2 py-0.5 rounded-full">
+                        {office.tag}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {office.address}<br />{office.state}
+                  </p>
+                  <div className="mt-3 flex flex-col gap-1">
+                    <a
+                      href={`tel:${office.phone.replace(/\D/g, "")}`}
+                      className="text-sm text-brand-gold hover:text-brand-gold-dark transition-colors"
+                    >
+                      {office.phone}
+                    </a>
+                    <a
+                      href={office.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-white/40 hover:text-white/70 transition-colors"
+                      aria-label={`Get directions to ${office.city} office`}
+                    >
+                      Get Directions →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
