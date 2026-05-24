@@ -7,6 +7,7 @@ import { InsightCard } from "@/components/cards/InsightCard";
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { AttorneyPhoto } from "@/components/ui/AttorneyPhoto";
 import { ATTORNEYS, INSIGHTS } from "@/lib/constants";
 
 interface Props { params: Promise<{ slug: string }> }
@@ -52,11 +53,12 @@ export default async function AttorneyProfilePage({ params }: Props) {
             {/* Photo */}
             <div className="lg:col-span-2">
               <div className="aspect-[4/5] bg-surface-mid rounded-sm overflow-hidden relative border border-surface-border">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-serif text-8xl font-semibold text-text-muted/30" aria-hidden="true">
-                    {attorney.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
-                </div>
+                <AttorneyPhoto
+                  name={attorney.name}
+                  photo={attorney.photo}
+                  initialsSize="text-8xl"
+                  className="rounded-sm"
+                />
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-gold" aria-hidden="true" />
               </div>
             </div>

@@ -121,10 +121,29 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Office Locations Strip */}
-      <section className="bg-brand-navy py-14" aria-labelledby="locations-strip-heading">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold tracking-widest uppercase text-brand-gold mb-8 text-center">
+      {/* Office Locations + Map */}
+      <section className="bg-brand-navy" aria-labelledby="locations-strip-heading">
+        {/* Map embed — replace the src URL with your actual office location */}
+        {/* Free embed: https://www.google.com/maps/embed?pb=... (no API key needed) */}
+        <div className="w-full h-72 lg:h-96 overflow-hidden">
+          <iframe
+            title="Meridian Law — New York Office Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573736029!2d-73.9822!3d40.7527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258fb2c85620b%3A0x7df3b9e2a3c2ec75!2sPark%20Ave%2C%20New%20York%2C%20NY%2010017!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: "grayscale(20%) contrast(1.05)" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
+        {/* Office cards */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+          <p
+            id="locations-strip-heading"
+            className="text-xs font-semibold tracking-widest uppercase text-brand-gold mb-8 text-center"
+          >
             Our Offices
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">

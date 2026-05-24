@@ -1,21 +1,44 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// constants.ts — Single source of truth for all firm data.
+//
+// HOW TO CUSTOMIZE:
+// 1. Update FIRM with your real firm name, phone, email, address, and hours.
+// 2. Edit ATTORNEYS — add/remove attorneys, add real photo paths to /public/images/attorneys/.
+// 3. Edit PRACTICE_AREAS — remove areas you don't offer; add new ones if needed.
+// 4. Edit CASE_RESULTS — replace with real (appropriately anonymized) outcomes.
+// 5. Edit INSIGHTS — these drive the blog index; swap in real article slugs and authors.
+// 6. Edit TRUST_METRICS — update numbers to reflect your firm's actual track record.
+// 7. MATTER_TYPES — drives the contact form dropdown; keep in sync with PRACTICE_AREAS.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Firm Info ────────────────────────────────────────────────────────────────
+// UPDATE: Replace every value below with your real firm details.
 export const FIRM = {
   name: "Meridian Law",
   tagline: "Clarity in complex matters.",
+  // UPDATE: Your main phone number (used in Navbar, Footer, Contact page)
   phone: "+1 (212) 555-0100",
+  // UPDATE: General intake / contact email
   email: "hello@meridianlaw.com",
+  // UPDATE: Primary office address (used in Footer and structured data)
   address: {
     street: "123 Park Avenue, Suite 1400",
     city: "New York",
     state: "NY",
     zip: "10017",
   },
+  // UPDATE: Office hours shown in Footer and Contact sidebar
   hours: "Monday – Friday, 9:00am – 6:00pm EST",
+  // UPDATE: Your real social profile URLs
   social: {
     linkedin: "https://linkedin.com/company/meridian-law",
     twitter: "https://twitter.com/meridianlaw",
   },
 };
 
+// ─── Navigation ───────────────────────────────────────────────────────────────
+// UPDATE: If you add or remove pages, mirror those changes here.
+// The "children" array drives the dropdown menus in the Navbar.
 export const NAV_LINKS = [
   {
     label: "About",
@@ -29,16 +52,16 @@ export const NAV_LINKS = [
     label: "Practice Areas",
     href: "/practice-areas",
     children: [
-      { label: "Corporate & Commercial Law",   href: "/practice-areas/corporate-commercial-law" },
-      { label: "Real Estate Law",              href: "/practice-areas/real-estate-law" },
+      { label: "Corporate & Commercial Law",      href: "/practice-areas/corporate-commercial-law" },
+      { label: "Real Estate Law",                 href: "/practice-areas/real-estate-law" },
       { label: "Litigation & Dispute Resolution", href: "/practice-areas/litigation-dispute-resolution" },
-      { label: "Family Law",                   href: "/practice-areas/family-law" },
-      { label: "Employment Law",               href: "/practice-areas/employment-law" },
-      { label: "Intellectual Property",        href: "/practice-areas/intellectual-property" },
-      { label: "Immigration Law",              href: "/practice-areas/immigration-law" },
-      { label: "Tax Advisory",                 href: "/practice-areas/tax-advisory" },
-      { label: "Banking & Finance",            href: "/practice-areas/banking-finance" },
-      { label: "Startup & Business Advisory",  href: "/practice-areas/startup-business-advisory" },
+      { label: "Family Law",                      href: "/practice-areas/family-law" },
+      { label: "Employment Law",                  href: "/practice-areas/employment-law" },
+      { label: "Intellectual Property",           href: "/practice-areas/intellectual-property" },
+      { label: "Immigration Law",                 href: "/practice-areas/immigration-law" },
+      { label: "Tax Advisory",                    href: "/practice-areas/tax-advisory" },
+      { label: "Banking & Finance",               href: "/practice-areas/banking-finance" },
+      { label: "Startup & Business Advisory",     href: "/practice-areas/startup-business-advisory" },
     ],
   },
   { label: "Attorneys",  href: "/attorneys" },
@@ -47,6 +70,18 @@ export const NAV_LINKS = [
   { label: "Contact",    href: "/contact" },
 ];
 
+// ─── Practice Areas ───────────────────────────────────────────────────────────
+// Each entry generates:
+//   • A card on the /practice-areas index page
+//   • A dynamic page at /practice-areas/[slug]
+//   • A nav dropdown item (keep in sync with NAV_LINKS above)
+//
+// "icon" is a lucide-react icon name (see src/app/practice-areas/page.tsx for the map).
+// "shortDescription" appears on the index grid card (keep under ~120 chars).
+//
+// UPDATE: Remove practice areas your firm doesn't offer, or add new ones.
+// If you add a new area you must also add its detailed content in
+// src/app/practice-areas/[slug]/page.tsx (the `areaDetails` map).
 export const PRACTICE_AREAS = [
   {
     slug: "corporate-commercial-law",
@@ -110,6 +145,18 @@ export const PRACTICE_AREAS = [
   },
 ];
 
+// ─── Attorneys ────────────────────────────────────────────────────────────────
+// Each entry generates:
+//   • A card on /attorneys
+//   • A full profile page at /attorneys/[slug]
+//   • "authorSlug" references in INSIGHTS (links articles back to attorney)
+//
+// PHOTOS: Add headshots to /public/images/attorneys/ and set the photo path.
+//   e.g. photo: "/images/attorneys/jane-doe.jpg"
+//   Recommended: 600×750px JPG, professional headshot, light background.
+//   If photo is missing or fails to load, the page shows styled initials instead.
+//
+// UPDATE: Replace all placeholder data with real attorney information.
 export const ATTORNEYS = [
   {
     slug: "sarah-m-chen",
@@ -132,6 +179,7 @@ export const ATTORNEYS = [
       "Negotiated 6-year commercial lease for 40,000 sq ft NYC headquarters",
       "Structured joint venture for international real estate development fund",
     ],
+    // UPDATE: Add real headshot — e.g. "/images/attorneys/sarah-chen.jpg"
     photo: "/images/attorneys/sarah-chen.jpg",
   },
   {
@@ -155,6 +203,7 @@ export const ATTORNEYS = [
       "Obtained full dismissal of criminal charges in high-profile white-collar investigation",
       "Represented employee class in landmark workplace harassment settlement",
     ],
+    // UPDATE: Add real headshot — e.g. "/images/attorneys/marcus-okafor.jpg"
     photo: "/images/attorneys/marcus-okafor.jpg",
   },
   {
@@ -177,10 +226,16 @@ export const ATTORNEYS = [
       "Advised 12-country corporate restructuring with immigration implications",
       "Guided Series A company through international employee relocation program",
     ],
+    // UPDATE: Add real headshot — e.g. "/images/attorneys/elena-vasquez.jpg"
     photo: "/images/attorneys/elena-vasquez.jpg",
   },
 ];
 
+// ─── Case Results ─────────────────────────────────────────────────────────────
+// Displayed on /case-results and the homepage strip.
+// UPDATE: Replace with real outcomes. Use appropriate anonymization per your
+// bar's advertising rules (e.g. "a Fortune 500 manufacturer" vs. naming the client).
+// Add the disclaimer: "Past results do not guarantee future outcomes."
 export const CASE_RESULTS = [
   {
     id: "cr-001",
@@ -224,6 +279,12 @@ export const CASE_RESULTS = [
   },
 ];
 
+// ─── Insights (Blog) ──────────────────────────────────────────────────────────
+// Each entry generates a listing card on /insights.
+// The full article lives at /insights/[slug]/page.tsx — create a new file for
+// each article you add here. The "authorSlug" must match an ATTORNEYS slug above.
+//
+// UPDATE: Add real articles. Update date, readTime, excerpt for each post.
 export const INSIGHTS = [
   {
     slug: "what-founders-need-to-know-before-series-a",
@@ -257,6 +318,9 @@ export const INSIGHTS = [
   },
 ];
 
+// ─── Trust Metrics ────────────────────────────────────────────────────────────
+// The four headline numbers shown on the homepage trust bar.
+// UPDATE: Replace with your firm's actual statistics.
 export const TRUST_METRICS = [
   { value: "20+",  label: "Years of Practice" },
   { value: "400+", label: "Matters Resolved" },
@@ -264,6 +328,9 @@ export const TRUST_METRICS = [
   { value: "12",   label: "Practice Areas" },
 ];
 
+// ─── Contact Form Matter Types ────────────────────────────────────────────────
+// Drives the dropdown in the contact form.
+// UPDATE: Keep in sync with PRACTICE_AREAS above.
 export const MATTER_TYPES = [
   "Corporate & Commercial Law",
   "Real Estate Law",

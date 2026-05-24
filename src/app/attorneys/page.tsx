@@ -36,6 +36,7 @@ export default function AttorneysPage() {
                   practiceAreas={attorney.practiceAreas}
                   location={attorney.location}
                   bio={attorney.bio}
+                  photo={attorney.photo}
                 />
               </li>
             ))}

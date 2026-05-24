@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { AttorneyPhoto } from "@/components/ui/AttorneyPhoto";
 import { cn } from "@/lib/utils";
 
 interface AttorneyCardProps {
@@ -10,11 +11,13 @@ interface AttorneyCardProps {
   practiceAreas: string[];
   location: string;
   bio: string;
+  /** Path to photo in /public — e.g. /images/attorneys/sarah-chen.jpg */
+  photo?: string;
   className?: string;
 }
 
 export function AttorneyCard({
-  slug, name, title, practiceAreas, location, bio, className,
+  slug, name, title, practiceAreas, location, bio, photo, className,
 }: AttorneyCardProps) {
   return (
     <article
@@ -24,16 +27,9 @@ export function AttorneyCard({
         className
       )}
     >
-      {/* Photo placeholder — editorial gray with initials */}
+      {/* Photo — real image or styled monogram fallback */}
       <div className="aspect-[4/3] bg-surface-mid overflow-hidden rounded-t-sm relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            className="font-serif text-5xl font-semibold text-text-muted/50"
-            aria-hidden="true"
-          >
-            {name.split(" ").map((n) => n[0]).join("")}
-          </span>
-        </div>
+        <AttorneyPhoto name={name} photo={photo} initialsSize="text-5xl" />
         {/* Gold bottom accent on hover */}
         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" aria-hidden="true" />
       </div>
